@@ -7,10 +7,10 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour {
 
     public GameObject groundElementPrefab;
-    private static string GROUND_TAG = "ground";
+    private static string GROUND_TAG = "Ground";
 
     public GameObject wallElementPrefab;
-    private static string WALL_TAG = "wall";
+    private static string WALL_TAG = "Wall";
 
     public GameObject brickElementPrefab;
     public GameObject playerPrefab;
@@ -46,7 +46,6 @@ public class MapGenerator : MonoBehaviour {
             {
                 currentPosition = new Vector3(x, 1, z);
                 GameObject o = Instantiate(brickElementPrefab, currentPosition, Quaternion.identity);
-                o.tag = WALL_TAG;
                 wallsElementList.Add(o);
             }
         }
@@ -64,7 +63,6 @@ public class MapGenerator : MonoBehaviour {
                 {
                     currentPosition = new Vector3(x, 1, z);
                     GameObject o = Instantiate(wallElementPrefab, currentPosition, Quaternion.identity);
-                    o.tag = WALL_TAG;
                     wallsElementList.Add(o);
                 }
             }
@@ -72,12 +70,10 @@ public class MapGenerator : MonoBehaviour {
             {
                 currentPosition = new Vector3(x, 1, -mapSize / 2);
                 GameObject o = Instantiate(wallElementPrefab, currentPosition, Quaternion.identity);
-                o.tag = WALL_TAG;
                 wallsElementList.Add(o);
 
                 currentPosition = new Vector3(x, 1, mapSize / 2);
                 GameObject o2 = Instantiate(wallElementPrefab, currentPosition, Quaternion.identity);
-                o2.tag = WALL_TAG;
                 wallsElementList.Add(o2);
             }
         }
@@ -101,7 +97,6 @@ public class MapGenerator : MonoBehaviour {
             {
                 currentPosition = new Vector3(x, 0, z);
                 GameObject o = Instantiate(groundElementPrefab, currentPosition, Quaternion.identity);
-                o.tag = GROUND_TAG;
                 groundElementList.Add(o);
             }
         }

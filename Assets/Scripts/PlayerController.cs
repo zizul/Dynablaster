@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     public GameObject bombPrefab;
 
@@ -11,12 +10,14 @@ public class PlayerController : MonoBehaviour {
     public float velocidad = 5f;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         rbody = GetComponent<Rigidbody>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         if (Input.GetKey(KeyCode.UpArrow))
         {
             rbody.velocity = new Vector3(rbody.velocity.x, rbody.velocity.y, this.velocidad);
@@ -57,5 +58,12 @@ public class PlayerController : MonoBehaviour {
                 Mathf.RoundToInt(this.transform.position.z)
             ),
             Quaternion.identity);
+    }
+    protected void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Explosion"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

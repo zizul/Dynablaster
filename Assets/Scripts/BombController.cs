@@ -54,6 +54,14 @@ public class BombController : MonoBehaviour {
         }
     }
 
+    protected void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            GetComponent<Collider>().isTrigger = false;
+        }
+    }
+
     // Update is called once per frame
     void Update () {
 		
