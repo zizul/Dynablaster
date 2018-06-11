@@ -38,7 +38,7 @@ public class MapGenerator : MonoBehaviour
     private void GenerateBricks()
     {
         var currentPosition = new Vector3(0, 0, 0);
-        int innerSize = mapSize - 9;
+        int innerSize = mapSize - 5;
 
         for (int x = -innerSize / 2; x <= innerSize / 2; x += 1)
         {

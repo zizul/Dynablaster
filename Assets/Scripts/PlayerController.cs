@@ -58,26 +58,31 @@ public class PlayerController : MonoBehaviour
                 Mathf.RoundToInt(this.transform.position.z)
             ),
             Quaternion.identity);
-        Physics.IgnoreCollision(o.GetComponent<Collider>(), GetComponent<Collider>());
+        //Physics.IgnoreCollision(o.GetComponent<Collider>(), GetComponent<Collider>());
     }
 
     protected void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Explosion"))
         {
-            Destroy(this.gameObject);
+            FindObjectOfType<MainController>().SetPlayerLastPosition(transform.position);
+           // Destroy(this.gameObject);
         }
-        if (other.CompareTag("Bomb"))
-        {
-            GetComponent<Collider>().isTrigger = false;
-        }
+        //if (other.CompareTag("Bomb"))
+        //{
+        //    GetComponent<Collider>().isTrigger = false;
+        //}
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.collider.CompareTag("Bomb"))
-        {
-            GetComponent<Collider>().isTrigger = false;
-        }
-    }
+    //private void OnCollisionEnter(Collision other)
+    //{
+    //    if (other.collider.CompareTag("Bomb"))
+    //    {
+    //        GetComponent<Collider>().isTrigger = false;
+    //    }
+    //    if (other.collider.CompareTag("Explosion"))
+    //    {
+    //        Destroy(this.gameObject);
+    //    }
+    //}
 }

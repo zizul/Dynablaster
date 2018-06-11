@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ExplosionController : MonoBehaviour {
 
-    [SerializeField] private float m_TimeOut = 1.0f;
+    [SerializeField] private float m_TimeOut = 0.10f;
     [SerializeField] private bool m_DetachChildren = false;
 
     // Use this for initialization
     void Awake () {
-        Invoke("DestroyNow", m_TimeOut);
+        DestroyObject(gameObject, m_TimeOut);
+        //Invoke("DestroyNow", m_TimeOut);
     }
 
     private void DestroyNow()
@@ -18,6 +19,7 @@ public class ExplosionController : MonoBehaviour {
         {
             transform.DetachChildren();
         }
+        Debug.Log("destroy = ");
         DestroyObject(gameObject);
     }
 

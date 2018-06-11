@@ -30,9 +30,6 @@ public class BombController : MonoBehaviour {
     {
         for (int i = 1; i <= explosionRange; i++)
         {
-            Debug.Log("explode at = " + (transform.position + (direction * i)));
-            
-
             RaycastHit result;
             Physics.Raycast(
                 this.transform.position + new Vector3(0, .5f, 0),
@@ -45,6 +42,11 @@ public class BombController : MonoBehaviour {
             {
                 GameObject o = Instantiate(explosionPrefab, transform.position + (direction * i), Quaternion.identity);
             }
+            else if (result.collider.CompareTag("Brick"))
+            {
+                GameObject o = Instantiate(explosionPrefab, transform.position + (direction * i), Quaternion.identity);
+                break;
+            }
             else
             {
                 break;
@@ -53,19 +55,20 @@ public class BombController : MonoBehaviour {
             yield return new WaitForSeconds(explosionStepDelay);
         }
     }
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.collider.CompareTag("Player"))
-        {
-            GetComponent<Collider>().isTrigger = false;
-        }
-    }
+    //private void OnCollisionEnter(Collision other)
+    //{
+    //    if (other.collider.CompareTag("Player"))
+    //    {
+    //        GetComponent<Collider>().isTrigger = false;
+    //    }
+    //}
 
     protected void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            GetComponent<Collider>().isTrigger = false;
+            //GetComponent<Collider>().isTrigger = false;
+            GetComponent<Collider>().enabled = false;
         }
     }
 
