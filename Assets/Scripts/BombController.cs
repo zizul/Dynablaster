@@ -53,10 +53,17 @@ public class BombController : MonoBehaviour {
             yield return new WaitForSeconds(explosionStepDelay);
         }
     }
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.CompareTag("Player"))
+        {
+            GetComponent<Collider>().isTrigger = false;
+        }
+    }
 
     protected void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             GetComponent<Collider>().isTrigger = false;
         }
