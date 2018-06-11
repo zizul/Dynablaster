@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 //[ExecuteInEditMode]
-public class MapGenerator : MonoBehaviour {
+public class MapGenerator : MonoBehaviour
+{
 
     public GameObject groundElementPrefab;
     private static string GROUND_TAG = "Ground";
@@ -20,21 +19,51 @@ public class MapGenerator : MonoBehaviour {
     private List<GameObject> wallsElementList = new List<GameObject>();
 
     // Use this for initialization
-    void Awake () {
+    void Awake()
+    {
         groundElementList = new List<GameObject>(GameObject.FindGameObjectsWithTag(GROUND_TAG));
         DestroyGround();
         GenerateGround();
         GenerateWalls();
+        GenerateWallsInside();
         GenerateBricks();
         SpawnPlayer();
     }
 
     private void SpawnPlayer()
     {
-        GameObject o = Instantiate(playerPrefab, new Vector3(-mapSize/2+1, 1, mapSize/2-1), Quaternion.identity);
+        GameObject o = Instantiate(playerPrefab, new Vector3(-mapSize / 2 + 1, 1, mapSize / 2 - 1), Quaternion.identity);
     }
 
     private void GenerateBricks()
+    {
+        var currentPosition = new Vector3(0, 0, 0);
+        int innerSize = mapSize - 9;
+
+        for (int x = -innerSize / 2; x <= innerSize / 2; x += 1)
+        {
+            for (int z = -innerSize / 2; z <= innerSize / 2; z += 1)
+            {
+                currentPosition = new Vector3(x, 1, z);
+                if(checkIfPosEmpty(currentPosition, wallsElementList))
+                {
+                    GameObject o = Instantiate(brickElementPrefab, currentPosition, Quaternion.identity);
+                    wallsElementList.Add(o);
+                }
+            }
+        }
+    }
+    public bool checkIfPosEmpty(Vector3 targetPos, List<GameObject> list)
+    {
+        foreach (GameObject current in list)
+        {
+            if (current.transform.position == targetPos)
+                return false;
+        }
+        return true;
+    }
+
+    private void GenerateWallsInside()
     {
         var currentPosition = new Vector3(0, 0, 0);
 
@@ -45,7 +74,7 @@ public class MapGenerator : MonoBehaviour {
             for (int z = -innerSize / 2; z <= innerSize / 2; z += 2)
             {
                 currentPosition = new Vector3(x, 1, z);
-                GameObject o = Instantiate(brickElementPrefab, currentPosition, Quaternion.identity);
+                GameObject o = Instantiate(wallElementPrefab, currentPosition, Quaternion.identity);
                 wallsElementList.Add(o);
             }
         }
@@ -57,7 +86,7 @@ public class MapGenerator : MonoBehaviour {
 
         for (int x = -mapSize / 2; x <= mapSize / 2; x++)
         {
-            if(x == -mapSize / 2 || x == mapSize / 2)
+            if (x == -mapSize / 2 || x == mapSize / 2)
             {
                 for (int z = -mapSize / 2; z <= mapSize / 2; z++)
                 {
@@ -91,7 +120,7 @@ public class MapGenerator : MonoBehaviour {
     {
         var currentPosition = new Vector3(0, 0, 0);
 
-        for (int x = -mapSize/2; x <= mapSize/2; x++)
+        for (int x = -mapSize / 2; x <= mapSize / 2; x++)
         {
             for (int z = -mapSize / 2; z <= mapSize / 2; z++)
             {
