@@ -56,8 +56,8 @@ public class PlayerController : MonoBehaviour
                 Mathf.RoundToInt(this.transform.position.x),
                 Mathf.RoundToInt(this.transform.position.y),
                 Mathf.RoundToInt(this.transform.position.z)
-            ),
-            Quaternion.identity);
+            ),bombPrefab.transform.rotation);
+            o.transform.localScale = bombPrefab.transform.localScale;
         //Physics.IgnoreCollision(o.GetComponent<Collider>(), GetComponent<Collider>());
     }
 
