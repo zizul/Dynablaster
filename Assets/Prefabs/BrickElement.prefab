@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65212742596946464}
   - component: {fileID: 23058763834746534}
   - component: {fileID: 114107309021874194}
-  - component: {fileID: 54361031331844552}
+  - component: {fileID: 54706850660609870}
   m_Layer: 0
   m_Name: BrickElement
   m_TagString: Brick
@@ -85,7 +85,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1939747737529244}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54361031331844552
+--- !u!54 &54706850660609870
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -98,7 +98,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 14
   m_CollisionDetection: 0
 --- !u!65 &65212742596946464
 BoxCollider:
@@ -107,7 +107,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1939747737529244}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

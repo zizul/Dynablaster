@@ -68,7 +68,7 @@ public class BombController : MonoBehaviour {
         if (other.CompareTag("Player"))
         {
             //GetComponent<Collider>().isTrigger = false;
-            GetComponent<Collider>().enabled = false;
+            //GetComponent<Collider>().enabled = false;
         }
     }
 

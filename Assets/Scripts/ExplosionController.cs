@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class ExplosionController : MonoBehaviour {
 
-    [SerializeField] private float m_TimeOut = 0.10f;
-    [SerializeField] private bool m_DetachChildren = false;
+    [SerializeField] private float m_TimeOut = 0f;
+    [SerializeField] private bool m_DetachChildren = true;
 
     // Use this for initialization
     void Awake () {
-        DestroyObject(gameObject, m_TimeOut);
-        //Invoke("DestroyNow", m_TimeOut);
+
+        //DestroyObject(gameObject, m_TimeOut);
+        Invoke("DestroyNow", m_TimeOut);
     }
 
     private void DestroyNow()
@@ -19,8 +20,22 @@ public class ExplosionController : MonoBehaviour {
         {
             transform.DetachChildren();
         }
-        Debug.Log("destroy = ");
+        //Debug.Log("destroy = "); 
         DestroyObject(gameObject);
+    }
+
+    protected void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            //GetComponent<Collider>().isTrigger = false;
+            Destroy(other.gameObject);
+        }
+        if (other.CompareTag("Brick"))
+        {
+            //GetComponent<Collider>().isTrigger = false;
+            Destroy(other.gameObject);
+        }
     }
 
     // Update is called once per frame
