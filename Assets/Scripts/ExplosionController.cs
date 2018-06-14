@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class ExplosionController : MonoBehaviour {
 
-    [SerializeField] private float m_TimeOut = 0f;
+    [SerializeField] private float m_TimeOut = 0.1f;
     [SerializeField] private bool m_DetachChildren = true;
 
     // Use this for initialization
     void Awake () {
 
+        var exp = GetComponent<ParticleSystem>();
+        exp.Play();
+        Destroy(gameObject, exp.main.duration);
+
         //DestroyObject(gameObject, m_TimeOut);
-        Invoke("DestroyNow", m_TimeOut);
+        //Invoke("DestroyNow", m_TimeOut);
     }
 
     private void DestroyNow()
@@ -19,9 +23,9 @@ public class ExplosionController : MonoBehaviour {
         if (m_DetachChildren)
         {
             transform.DetachChildren();
-        }
-        //Debug.Log("destroy = "); 
-        DestroyObject(gameObject);
+        } 
+        Destroy (gameObject);
+        Debug.Log("exp destroy");
     }
 
     protected void OnTriggerEnter(Collider other)

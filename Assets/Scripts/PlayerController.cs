@@ -53,10 +53,12 @@ public class PlayerController : MonoBehaviour
         GameObject o = Instantiate(
             bombPrefab,
             new Vector3(
-                Mathf.RoundToInt(this.transform.position.x),
-                Mathf.RoundToInt(this.transform.position.y),
-                Mathf.RoundToInt(this.transform.position.z)
-            ),bombPrefab.transform.rotation);
+
+                
+            Mathf.RoundToInt(this.transform.position.x),
+            Mathf.RoundToInt(this.transform.position.y),
+            Mathf.RoundToInt(this.transform.position.z)
+            ),bombPrefab.transform.rotation * Quaternion.Euler(new Vector3(20, 20, 20)));
             o.transform.localScale = bombPrefab.transform.localScale;
         //Physics.IgnoreCollision(o.GetComponent<Collider>(), GetComponent<Collider>());
     }
