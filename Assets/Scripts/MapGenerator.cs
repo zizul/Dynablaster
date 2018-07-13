@@ -47,7 +47,7 @@ public class MapGenerator : MonoBehaviour
                 currentPosition = new Vector3(x, 1, z);
                 if(checkIfPosEmpty(currentPosition, wallsElementList))
                 {
-                    GameObject o = Instantiate(brickElementPrefab, currentPosition, Quaternion.identity);
+					GameObject o = Instantiate(brickElementPrefab, currentPosition, Quaternion.identity);
                     wallsElementList.Add(o);
                 }
             }
