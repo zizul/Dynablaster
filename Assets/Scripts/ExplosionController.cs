@@ -40,6 +40,11 @@ public class ExplosionController : MonoBehaviour {
             //GetComponent<Collider>().isTrigger = false;
             Destroy(other.gameObject);
         }
+        if (other.CompareTag("Bomb"))
+        {
+            //GetComponent<Collider>().isTrigger = false;
+            other.gameObject.GetComponent<BombController>().Explode();
+        }
     }
 
     // Update is called once per frame

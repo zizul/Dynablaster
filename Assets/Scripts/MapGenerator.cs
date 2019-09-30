@@ -33,6 +33,7 @@ public class MapGenerator : MonoBehaviour
     private void SpawnPlayer()
     {
         GameObject o = Instantiate(playerPrefab, new Vector3(-mapSize / 2 + 1, 1, mapSize / 2 - 1), Quaternion.identity);
+        //Destroy(o.GetComponent<Rigidbody>());
     }
 
     private void GenerateBricks()
@@ -47,7 +48,8 @@ public class MapGenerator : MonoBehaviour
                 currentPosition = new Vector3(x, 1, z);
                 if(checkIfPosEmpty(currentPosition, wallsElementList))
                 {
-					GameObject o = Instantiate(brickElementPrefab, currentPosition, Quaternion.identity);
+					GameObject o = Instantiate(brickElementPrefab);
+                    o.transform.position = currentPosition;
                     wallsElementList.Add(o);
                 }
             }

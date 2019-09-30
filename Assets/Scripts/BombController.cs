@@ -14,10 +14,10 @@ public class BombController : MonoBehaviour {
         Invoke("Explode", explosionDelay);
 	}
 	
-    private void Explode()
+    public void Explode()
     {
         GameObject o = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        Debug.Log("explode start at = " + transform.position);
+        //Debug.Log("explode start at = " + transform.position);
         StartCoroutine(ContinueExplode(Vector3.right));
         StartCoroutine(ContinueExplode(Vector3.left));
         StartCoroutine(ContinueExplode(Vector3.forward));
